@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Payment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00457C 0%, #0079C1 50%, #003087 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            animation: gradientBG 15s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                        0 0 30px rgba(0, 69, 124, 0.2);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4),
+                        0 0 35px rgba(0, 69, 124, 0.3);
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-container img {
+            width: 180px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00457C, transparent);
+        }
+
+        h1 {
+            color: #00457C;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .amount {
+            font-size: 2.5em;
+            color: #00457C;
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            box-shadow: 
+                5px 5px 10px rgba(0, 0, 0, 0.1),
+                -5px -5px 10px rgba(255, 255, 255, 0.8);
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-container {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 18px 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            background: white;
+            color: #00457C;
+        }
+
+        input[type="email"]:focus {
+            border-color: #0079C1;
+            box-shadow: 0 0 0 3px rgba(0, 121, 193, 0.2);
+            outline: none;
+        }
+
+        input[type="email"]::placeholder {
+            color: #a0a0a0;
+            transition: all 0.3s ease;
+        }
+
+        input[type="email"]:focus::placeholder {
+            opacity: 0.7;
+            transform: translateX(10px);
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(45deg, #00457C, #0079C1);
+            color: white;
+            padding: 18px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2),
+                        0 3px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #003087, #0079C1);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        button:hover::after {
+            animation: shine 1.5s ease;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .amount {
+                font-size: 2em;
+                padding: 15px;
+            }
+
+            .logo-container img {
+                width: 150px;
+            }
+
+            input[type="email"] {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="./images/paypal.svg" alt="PayPal">
+        </div>
+        <h1>PayPal Payment</h1>
+        <div class="amount" id="paymentAmount"></div>
+        <form id="paypalForm" onsubmit="submitPayment(event)">
+            <div class="input-container">
+                <input type="email" placeholder="Enter your PayPal email" required>
+            </div>
+            <button type="submit">Pay with PayPal</button>
+        </form>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount');
+        document.getElementById('paymentAmount').textContent = `₹${amount}`;
+
+        function submitPayment(event) {
+            event.preventDefault();
+            const email = document.querySelector('input[type="email"]').value;
+            localStorage.setItem('paymentMethod', 'PayPal');
+            localStorage.setItem('paypalEmail', email);
+            window.location.href = `paymentsuccessful.html?amount=${amount}`;
+        }
+    </script>
+</body>
+</html>

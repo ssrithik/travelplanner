@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machu Picchu - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/machu1.png" alt="Machu Picchu" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Machu Picchu</h1>
+        <p>Step into the ancient world of the Incas and explore the mystical ruins of Machu Picchu, surrounded by lush mountains and breathtaking landscapes.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover the Ruins</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/machupicchu1.png" alt="Machu Picchu Ruins">
+        <div class="gallery-overlay">
+          <h3>Machu Picchu Ruins</h3>
+          <p>The iconic archaeological site of the Inca civilization</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/machupicchu2.png" alt="Huayna Picchu">
+        <div class="gallery-overlay">
+          <h3>Huayna Picchu</h3>
+          <p>Climb the steep peak for panoramic views of the ruins</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/machupicchu3.png" alt="Sun Gate">
+        <div class="gallery-overlay">
+          <h3>Sun Gate</h3>
+          <p>The entrance to Machu Picchu for Inca Trail hikers</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Machu Picchu</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-mountain feature-icon"></i>
+        <h3>History</h3>
+        <p>Explore the ancient ruins and learn about Inca civilization.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-hiking feature-icon"></i>
+        <h3>Adventure</h3>
+        <p>Hike the Inca Trail and experience breathtaking landscapes.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-camera feature-icon"></i>
+        <h3>Views</h3>
+        <p>Capture stunning views of the Andes Mountains.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Machu Picchu?</h2>
+    <p>Book your trip now and embark on a journey to one of the world's most iconic destinations.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Machu Picchu</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Arrive early to explore the ruins and enjoy the sunrise over the mountains.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Hike to Huayna Picchu for panoramic views of the site.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Relax in Aguas Calientes and enjoy traditional Peruvian cuisine.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Machu Picchu</a></li>
+          <li><a href="#">Cusco</a></li>
+          <li><a href="#">Sacred Valley</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

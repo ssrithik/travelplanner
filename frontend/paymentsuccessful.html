@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - TravelPlanner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .navbar {
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            color: #ff7f50;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ff7f50;
+        }
+
+        .confirmation-container {
+            max-width: 800px;
+            margin: 70px auto 0;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .success-banner {
+            background: linear-gradient(135deg, #43c6ac 0%, #22c55e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .success-banner h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .success-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-details {
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            font-weight: 600;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            margin-bottom: 15px;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .flight-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-left: 5px solid #22c55e;
+        }
+
+        .flight-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .airline-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .airline-logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .flight-route {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .flight-point {
+            flex: 1;
+        }
+
+        .flight-time {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .flight-city {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .flight-line {
+            flex: 2;
+            height: 2px;
+            background: #ddd;
+            position: relative;
+        }
+
+        .flight-line::after {
+            content: '✈️';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+        }
+
+        .price-summary {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-label {
+            color: #666;
+        }
+
+        .price-value {
+            font-weight: 500;
+        }
+
+        .total-row {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #22c55e;
+            padding-top: 15px;
+            margin-top: 10px;
+            border-top: 2px solid #ddd;
+        }
+
+        .transaction-info {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .primary-btn {
+            background: #22c55e;
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .secondary-btn {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .secondary-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #fd0;
+            opacity: 0.8;
+            animation: confetti 5s ease-in-out infinite;
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .success-animation {
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flight-route {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .flight-line {
+                width: 2px;
+                height: 40px;
+                margin: 10px auto;
+            }
+
+            .flight-line::after {
+                top: 50%;
+                left: -10px;
+                transform: translateY(-50%) rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">TravelPlanner</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="confirmation-container">
+        <div class="success-banner">
+            <div class="success-icon success-animation">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" fill="#22C55E"/>
+                    <path d="M18 30L27 39L42 21" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h1>Booking Confirmed!</h1>
+            <p>Your dream vacation is ready. Check your email for booking details.</p>
+        </div>
+
+        <div class="booking-details">
+            <h2 class="section-title">Trip Details</h2>
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <div class="detail-label">Destination</div>
+                    <div class="detail-value" id="destination">Loading...</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Booking Reference</div>
+                    <div class="detail-value" id="bookingReference">Loading...</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Traveler Name</div>
+                    <div class="detail-value" id="travelerName">Loading...</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Travel Dates</div>
+                    <div class="detail-value" id="travelDates">Loading...</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Number of Travelers</div>
+                    <div class="detail-value" id="numTravelers">Loading...</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Accommodation Type</div>
+                    <div class="detail-value" id="accommodationType">Loading...</div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Flight Information</h2>
+            <div class="flight-card">
+                <div class="flight-header">
+                    <div class="airline-info">
+                        <div class="airline-logo">
+                            <span id="airlineIcon">✈️</span>
+                        </div>
+                        <div>
+                            <div id="airlineName">Loading...</div>
+                            <div id="flightNumber" style="color: #666; font-size: 0.9rem;">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flight-route">
+                    <div class="flight-point">
+                        <div class="flight-time" id="departureTime">--:--</div>
+                        <div class="flight-city" id="departureCity">Home</div>
+                    </div>
+                    <div class="flight-line"></div>
+                    <div class="flight-point">
+                        <div class="flight-time" id="arrivalTime">--:--</div>
+                        <div class="flight-city" id="arrivalCity">Destination</div>
+                    </div>
+                </div>
+
+                <div style="color: #666; font-size: 0.9rem;">
+                    <span>Duration: </span>
+                    <span id="flightDuration">Loading...</span>
+                </div>
+            </div>
+
+            <h2 class="section-title">Price Summary</h2>
+            <div class="price-summary">
+                <div class="price-row">
+                    <div class="price-label">Package Base Price</div>
+                    <div class="price-value" id="basePrice">$0</div>
+                </div>
+                <div class="price-row">
+                    <div class="price-label">Accommodation Upgrade</div>
+                    <div class="price-value" id="accommodationPrice">$0</div>
+                </div>
+                <div class="price-row">
+                    <div class="price-label">Activities Cost</div>
+                    <div class="price-value" id="activitiesCost">$0</div>
+                </div>
+                <div class="price-row">
+                    <div class="price-label">Flight Cost</div>
+                    <div class="price-value" id="flightCost">$0</div>
+                </div>
+                <div class="price-row total-row">
+                    <div class="price-label">Total Amount Paid</div>
+                    <div class="price-value" id="totalAmount">$0</div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Payment Information</h2>
+            <div class="transaction-info">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">Transaction ID</div>
+                        <div class="detail-value" id="transactionId">Loading...</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Payment Method</div>
+                        <div class="detail-value" id="paymentMethod">Loading...</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Payment Date</div>
+                        <div class="detail-value" id="paymentDate">Loading...</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Payment Status</div>
+                        <div class="detail-value" style="color: #22c55e; font-weight: 600;">Confirmed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn primary-btn" onclick="downloadItinerary()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download Itinerary
+                </button>
+                <button class="action-btn secondary-btn" onclick="window.location.href='index.html'">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Return to Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        function createConfetti() {
+            const colors = ['#ff7f50', '#22c55e', '#4f46e5', '#f59e0b', '#ec4899'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -10 + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+      
+        function generateBookingReference() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numbers = '0123456789';
+            let result = '';
+            
+            
+            for (let i = 0; i < 2; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            
+            for (let i = 0; i < 6; i++) {
+                result += numbers.charAt(Math.floor(Math.random() * numbers.length));
+            }
+            
+            return result;
+        }
+
+        
+        function generateTransactionId() {
+            return 'TXN' + Math.random().toString(36).substring(2, 10).toUpperCase();
+        }
+
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+        
+        
+        function downloadItinerary() {
+            alert('Your itinerary is being prepared and will be downloaded shortly. A copy has also been sent to your email.');
+            Promise.all([
+        import('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
+        import('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')
+    ])
+    .then(() => {
+        const { jsPDF } = window.jspdf;
+        
+        // Get the confirmation container
+        const element = document.querySelector('.confirmation-container');
+        
+        // Set some styling for better PDF rendering
+        const originalStyle = element.style.cssText;
+        element.style.width = '800px';
+        element.style.margin = '0';
+        element.style.padding = '0';
+        element.style.borderRadius = '0';
+        element.style.boxShadow = 'none';
+        
+        // Use html2canvas to capture the element
+        html2canvas(element, {
+            scale: 1,
+            useCORS: true,
+            logging: false,
+            backgroundColor: '#ffffff'
+        }).then(canvas => {
+            // Create PDF
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+            
+            // Calculate the width and height to maintain aspect ratio
+            const imgWidth = 210; // A4 width in mm
+            const pageHeight = 297; // A4 height in mm
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            let heightLeft = imgHeight;
+            let position = 0;
+            
+            // Add the first page
+            const imgData = canvas.toDataURL('image/png');
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+            
+            // Add new pages if needed for long content
+            while (heightLeft > 0) {
+                position = heightLeft - imgHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+            
+            // Get booking reference to use in filename
+            const bookingRef = document.getElementById('bookingReference').textContent;
+            
+            // Save the PDF
+            pdf.save(`TravelPlanner_Itinerary_${bookingRef}.pdf`);
+            
+            // Restore original styling
+            element.style.cssText = originalStyle;
+        });
+    })
+    .catch(error => {
+        console.error('Error generating PDF:', error);
+        alert('There was an error generating your PDF. Please try again later.');
+    });
+}
+async function checkLoginStatus() {
+  try {
+    console.log('Checking login status...');
+    const response = await fetch('/api/auth/status', {
+      credentials: 'include' // Important for session cookies
+    });
+    console.log('Login status response:', response);
+    if (!response.ok) {
+      console.error('Login status check failed:', response.status, response.statusText);
+      return false;
+    }
+    const data = await response.json();
+    console.log('Login status data:', data);
+    return data.loggedIn;
+  } catch (error) {
+    console.error('Error checking login status:', error);
+    return false;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async function () {
+    createConfetti();
+ const isLoggedIn = await checkLoginStatus();
+    if (!isLoggedIn) {
+        alert('Please log in to save your booking details');
+        window.location.href = '/login?redirect=payment-success';
+        return;
+    }
+    const bookingDetails = JSON.parse(localStorage.getItem('bookingDetails') || '{}');
+    const selectedFlight = JSON.parse(localStorage.getItem('selectedFlight') || '{}');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const totalAmount = urlParams.get('amount') || '0';
+
+    // Filling the HTML page
+    document.getElementById('destination').textContent = bookingDetails.destination || 'Unknown Destination';
+    document.getElementById('bookingReference').textContent = generateBookingReference();
+    document.getElementById('travelerName').textContent = bookingDetails.name || 'Guest';
+
+    if (bookingDetails.departureDate && bookingDetails.returnDate) {
+        document.getElementById('travelDates').textContent = 
+            `${formatDate(bookingDetails.departureDate)} - ${formatDate(bookingDetails.returnDate)}`;
+    }
+
+    document.getElementById('numTravelers').textContent = bookingDetails.travelers || '1';
+    document.getElementById('accommodationType').textContent = bookingDetails.accommodation || 'Standard';
+
+    document.getElementById('airlineName').textContent = selectedFlight.airline || 'Not specified';
+    document.getElementById('flightNumber').textContent = selectedFlight.flightNumber || 'N/A';
+    document.getElementById('departureTime').textContent = selectedFlight.departure || '--:--';
+    document.getElementById('arrivalTime').textContent = selectedFlight.arrival || '--:--';
+    document.getElementById('flightDuration').textContent = selectedFlight.duration || 'Not specified';
+
+    document.getElementById('basePrice').textContent = `$${bookingDetails.basePrice || '0'}`;
+    document.getElementById('accommodationPrice').textContent = `$${bookingDetails.accommodationPrice || '0'}`;
+    document.getElementById('activitiesCost').textContent = `$${bookingDetails.activitiesCost || '0'}`;
+    document.getElementById('flightCost').textContent = `$${selectedFlight.price || '0'}`;
+    document.getElementById('totalAmount').textContent = `$${totalAmount}`;
+
+    document.getElementById('transactionId').textContent = generateTransactionId();
+    document.getElementById('paymentMethod').textContent = localStorage.getItem('paymentMethod') || 'Credit Card';
+
+    const now = new Date();
+    document.getElementById('paymentDate').textContent = now.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    
+    const bookingData = {
+        bookingReference: document.getElementById('bookingReference').textContent,
+        destination: document.getElementById('destination').textContent,
+        travelerName: document.getElementById('travelerName').textContent,
+        departureDate: bookingDetails.departureDate || '',
+        returnDate: bookingDetails.returnDate || '',
+        numTravelers: parseInt(document.getElementById('numTravelers').textContent),
+        accommodationType: document.getElementById('accommodationType').textContent,
+        flightDetails: {
+            airline: document.getElementById('airlineName').textContent,
+            flightNumber: document.getElementById('flightNumber').textContent,
+            departure: document.getElementById('departureTime').textContent,
+            arrival: document.getElementById('arrivalTime').textContent,
+            duration: document.getElementById('flightDuration').textContent
+        },
+        pricing: {
+            basePrice: parseFloat(bookingDetails.basePrice || '0'),
+            accommodationPrice: parseFloat(bookingDetails.accommodationPrice || '0'),
+            activitiesCost: parseFloat(bookingDetails.activitiesCost || '0'),
+            flightCost: parseFloat(selectedFlight.price || '0'),
+            totalAmount: parseFloat(totalAmount || '0')
+        },
+        paymentInfo: {
+            transactionId: document.getElementById('transactionId').textContent,
+            paymentMethod: document.getElementById('paymentMethod').textContent,
+            paymentDate: now.toISOString(),
+            paymentStatus: 'Confirmed'
+        }
+    };
+
+    // Send data to backend
+    try {
+    const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bookingData),
+        credentials: 'include' // Important for session cookies
+    });
+
+    if (response.status === 401) {
+        // User not logged in
+        alert('Please log in to save your booking');
+        window.location.href = '/login?redirect=payment-success'; // Redirect to login
+        return;
+    }
+    
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to save booking');
+    }
+
+    console.log('✅ Booking saved successfully!');
+} catch (error) {
+    console.error('❌ Error saving booking:', error);
+    alert('There was an issue saving your booking: ' + error.message);
+}
+});
+
+</script>
+</body>
+</html>

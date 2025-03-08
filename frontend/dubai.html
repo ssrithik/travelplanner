@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dubai - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/dubai.png" alt="Dubai" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Dubai</h1>
+        <p>Discover the city of superlatives, where modern architecture meets rich cultural heritage.</p>
+        <button class="btn">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Explore Dubai</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/dubai1.png" alt="Burj Khalifa">
+        <div class="gallery-overlay">
+          <h3>Burj Khalifa</h3>
+          <p>Visit the world's tallest building and enjoy panoramic views of the city.</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/dubai2.png" alt="Palm Jumeirah">
+        <div class="gallery-overlay">
+          <h3>Palm Jumeirah</h3>
+          <p>Experience luxury on this man-made island with stunning resorts.</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/dubai3.png" alt="Desert Safari">
+        <div class="gallery-overlay">
+          <h3>Desert Safari</h3>
+          <p>Embark on an adventure with dune bashing and camel rides.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Dubai</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-building feature-icon"></i>
+        <h3>Architecture</h3>
+        <p>Marvel at iconic structures like the Burj Khalifa and Burj Al Arab.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-shopping-bag feature-icon"></i>
+        <h3>Shopping</h3>
+        <p>Explore world-class malls and traditional souks.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-sun feature-icon"></i>
+        <h3>Adventure</h3>
+        <p>Experience desert safaris, skydiving, and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Dubai?</h2>
+    <p>Book your trip now and explore the city of dreams.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Dubai</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Start your day with a visit to the iconic Burj Khalifa and enjoy the breathtaking views from the observation deck.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Explore the Dubai Mall, shop for luxury brands, and enjoy a delicious lunch at one of the many fine dining restaurants.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Experience the magical Dubai Fountain show and dine at a rooftop restaurant with stunning views of the city skyline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Burj Khalifa</a></li>
+          <li><a href="#">Dubai Mall</a></li>
+          <li><a href="#">Palm Jumeirah</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

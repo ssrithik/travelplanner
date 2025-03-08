@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Payment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            animation: gradientBG 15s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+                        0 0 20px rgba(255, 255, 255, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
+                        0 0 25px rgba(255, 255, 255, 0.15);
+        }
+
+        h1 {
+            color: #185a9d;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .wallet-options {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .wallet-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .wallet-options img {
+            width: 90px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .wallet-options img:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .wallet-options img.selected {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid #43cea2;
+        }
+
+        .input-container {
+            display: none;
+            margin: 20px 0;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .input-box:focus {
+            border-color: #43cea2;
+            box-shadow: 0 0 0 2px rgba(67, 206, 162, 0.2);
+            outline: none;
+        }
+
+        .input-label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #185a9d;
+            font-weight: 600;
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(45deg, #43cea2, #185a9d);
+            color: white;
+            padding: 18px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2),
+                        0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .wallet-options {
+                gap: 15px;
+            }
+
+            .wallet-options img {
+                width: 70px;
+                padding: 10px;
+            }
+
+            button {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pay with Wallet</h1>
+        <div class="wallet-options">
+            <div class="wallet-option" onclick="selectWallet('paytm')">
+                <img src="./images/paytm-icon.svg" alt="Paytm" id="paytm-icon">
+            </div>
+            <div class="wallet-option" onclick="selectWallet('phonepe')">
+                <img src="./images/phonepe-icon.svg" alt="PhonePe" id="phonepe-icon">
+            </div>
+            <div class="wallet-option" onclick="selectWallet('googlepay')">
+                <img src="./images/google-pay-icon.svg" alt="Google Pay" id="googlepay-icon">
+            </div>
+        </div>
+        <div id="paytm-input" class="input-container">
+            <label class="input-label">Enter Paytm ID</label>
+            <input type="text" class="input-box" placeholder="Enter your Paytm ID" onInput="validateInput()">
+        </div>
+        <div id="phonepe-input" class="input-container">
+            <label class="input-label">Enter PhonePe Number</label>
+            <input type="text" class="input-box" placeholder="Enter your PhonePe number" onInput="validateInput()">
+        </div>
+        <div id="googlepay-input" class="input-container">
+            <label class="input-label">Enter Google Pay ID</label>
+            <input type="text" class="input-box" placeholder="Enter your Google Pay ID" onInput="validateInput()">
+        </div>
+        <button onclick="submitPayment()" disabled id="payButton">Pay Now</button>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount');
+        let selectedWallet = null;
+
+        function selectWallet(wallet) {
+            // Reset all icons and hide all input containers
+            document.querySelectorAll('.wallet-options img').forEach(img => {
+                img.classList.remove('selected');
+            });
+            document.querySelectorAll('.input-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            
+            // Select the clicked wallet and show its input
+            document.getElementById(`${wallet}-icon`).classList.add('selected');
+            document.getElementById(`${wallet}-input`).style.display = 'block';
+            selectedWallet = wallet;
+            
+            // Reset the pay button
+            const payButton = document.getElementById('payButton');
+            payButton.disabled = true;
+            
+            // Clear input
+            document.querySelector(`#${wallet}-input input`).value = '';
+        }
+
+        function validateInput() {
+            const input = document.querySelector(`#${selectedWallet}-input input`);
+            const payButton = document.getElementById('payButton');
+            payButton.disabled = !input.value.trim();
+        }
+
+        function submitPayment() {
+            const walletId = document.querySelector(`#${selectedWallet}-input input`).value;
+            localStorage.setItem('paymentMethod', `${selectedWallet.toUpperCase()} Payment`);
+            localStorage.setItem('walletId', walletId);
+            window.location.href = `paymentsuccessful.html?amount=${amount}`;
+        }
+    </script>
+</body>
+</html>

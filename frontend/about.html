@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About TravelPlanner</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+      :root {
+          --primary-color: #00e5ff;
+          --secondary-color: #6a11cb;
+          --background-dark: #0f0f1a;
+      }
+
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      body {
+          font-family: 'Roboto', sans-serif;
+          background: linear-gradient(135deg, var(--background-dark) 0%, #1a1a2e 100%);
+          color: #ffffff;
+          line-height: 1.6;
+          overflow-x: hidden;
+      }
+
+      .company-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 50px 20px;
+          perspective: 1000px;
+      }
+
+      .hero-section {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 100px;
+          position: relative;
+          transform-style: preserve-3d;
+          transform: rotateX(10deg);
+          transition: transform 0.5s ease;
+      }
+
+      .hero-section:hover {
+          transform: rotateX(0);
+      }
+
+      .hero-text {
+          width: 60%;
+          z-index: 2;
+      }
+
+      .hero-image {
+          width: 35%;
+          position: relative;
+          transition: transform 0.5s ease;
+      }
+
+      .hero-image img {
+          width: 100%;
+          border-radius: 15px;
+          box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+          filter: grayscale(20%) brightness(110%);
+      }
+
+      .hero-section:hover .hero-image {
+          transform: scale(1.05);
+      }
+
+      .hero-text h1 {
+          font-family: 'Orbitron', sans-serif;
+          font-size: 4rem;
+          background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-bottom: 20px;
+      }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .mission, .vision {
+            padding: 20px;
+            border-left: 4px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission::before, .vision::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(0,229,255,0.1), transparent 50%);
+            z-index: -1;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            width: 250px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+  <div class="company-container">
+    <section class="hero-section">
+        <div class="hero-text">
+            <h1>TravelPlanner</h1>
+            <p>Revolutionizing travel experiences through innovative technology and global insights.</p>
+        </div>
+        <div class="hero-image">
+            <img src="./images/carousel2.jpg" alt="TravelPlanner Global Journey">
+        </div>
+    </section>
+        <section class="mission-vision">
+            <div class="mission">
+                <h2>Our Mission</h2>
+                <p>To transform travel planning into a seamless, personalized journey that connects explorers with extraordinary experiences across the globe.</p>
+            </div>
+            <div class="vision">
+                <h2>Our Vision</h2>
+                <p>Become the world's leading travel technology platform that empowers travelers to discover, plan, and live their most remarkable adventures.</p>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat-item pulse-animation">
+                <div class="stat-number">67+</div>
+                <p>Countries Covered</p>
+            </div>
+            <div class="stat-item pulse-animation">
+                <div class="stat-number">500K+</div>
+                <p>Happy Travelers</p>
+            </div>
+            <div class="stat-item pulse-animation">
+                <div class="stat-number">10</div>
+                <p>Years of Innovation</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

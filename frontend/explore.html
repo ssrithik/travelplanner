@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Destinations - TravelPlanner</title>
+  
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .navbar {
+      background-color: rgba(26, 26, 26, 0.9);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #ff7f50;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #ff7f50;
+    }
+
+    .explore-header {
+      height: 50vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/travel-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .explore-header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .explore-header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .destinations-container {
+      padding: 4rem 2rem;
+      background-color: #f5f5f5;
+    }
+
+    .filter-section {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      background-color: white;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background-color: #ff7f50;
+      color: white;
+    }
+
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .destination-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .destination-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .destination-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .destination-info {
+      padding: 1.5rem;
+    }
+
+    .destination-info h3 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .destination-info p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .destination-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    .price {
+      color: #ff7f50;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .book-btn {
+      padding: 0.6rem 1.2rem;
+      background-color: #ff7f50;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .book-btn:hover {
+      background-color: #ff6b3d;
+    }
+
+    .rating {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      color: #ff7f50;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .destination-card {
+    display: block;  
+    transition: all 0.3s ease;  
+}
+
+.destination-card[style*="display: none"] {
+    opacity: 0;
+    transform: scale(0.9);
+}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="explore-header">
+    <div>
+      <h1>Explore Amazing Destinations</h1>
+      <p>Discover breathtaking locations and unforgettable experiences around the world</p>
+    </div>
+  </header>
+
+  <main class="destinations-container">
+    <div class="filter-section">
+      <button class="filter-btn active">All Destinations</button>
+      <button class="filter-btn">Europe</button>
+      <button class="filter-btn">Asia</button>
+      <button class="filter-btn">Americas</button>
+      <button class="filter-btn">Africa</button>
+      <button class="filter-btn">Oceania</button>
+    </div>
+
+    <div class="destinations-grid">
+      
+      <div class="destination-card">
+        <div class="rating">4.8 ★</div>
+        <img src="/images/paris.jpg" alt="Paris" loading="lazy">
+        <div class="destination-info">
+          <h3>Paris, France</h3>
+          <p>Experience the magic of the City of Light with its iconic Eiffel Tower, world-class museums, and charming cafés.</p>
+          <div class="destination-meta">
+            <span class="price">From $899</span>
+            <a href="paris.html" class="book-btn">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+     
+      <div class="destination-card">
+        <div class="rating">4.9 ★</div>
+        <img src="/images/santorini-greece.png" alt="Santorini" loading="lazy">
+        <div class="destination-info">
+          <h3>Santorini, Greece</h3>
+          <p>Discover the stunning white-washed buildings, blue domes, and spectacular sunsets of this Mediterranean paradise.</p>
+          <div class="destination-meta">
+            <span class="price">From $1,099</span>
+            <a href="greece.html" class="book-btn">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="destination-card">
+        <div class="rating">4.7 ★</div>
+        <img src="/images/tokyo.jpg" alt="Tokyo" loading="lazy">
+        <div class="destination-info">
+          <h3>Tokyo, Japan</h3>
+          <p>Immerse yourself in the perfect blend of traditional culture and modern technology in Japan's vibrant capital.</p>
+          <div class="destination-meta">
+            <span class="price">From $1,299</span>
+            <a href="tokyo.html" class="book-btn">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="destination-card">
+        <div class="rating">4.9 ★</div>
+        <img src="/images/machu1.png" alt="Machu Picchu" loading="lazy">
+        <div class="destination-info">
+          <h3>Machu Picchu, Peru</h3>
+          <p>Explore the ancient Incan citadel set high in the Andes Mountains, surrounded by breathtaking landscapes.</p>
+          <div class="destination-meta">
+            <span class="price">From $1,499</span>
+            <a href="machu.html" class="book-btn">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="destination-card">
+        <div class="rating">4.8 ★</div>
+        <img src="/images/maldives.png" alt="Maldives" loading="lazy">
+        <div class="destination-info">
+          <h3>Maldives</h3>
+          <p>Relax in overwater bungalows and explore pristine coral reefs in this tropical island paradise.</p>
+          <div class="destination-meta">
+            <span class="price">From $2,199</span>
+            <a href="maldives.html" class="book-btn">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+    
+      <div class="destination-card">
+        <div class="rating">4.7 ★</div>
+        <img src="/images/dubai.png" alt="Dubai" loading="lazy">
+        <div class="destination-info">
+          <h3>Dubai, UAE</h3>
+          <p>Experience luxury shopping, ultramodern architecture, and vibrant nightlife in this desert metropolis.</p>
+          <div class="destination-meta">
+            <span class="price">From $999</span>
+            <a href="dubai.html" class="book-btn">Book Now</a>
+          </div>
+        </div>
+      </div>
+  
+   <div class="destination-card">
+    <div class="rating">4.8 ★</div>
+    <img src="/images/bali.png" alt="Bali" loading="lazy">
+    <div class="destination-info">
+      <h3>Bali, Indonesia</h3>
+      <p>Discover spiritual temples, lush rice terraces, and pristine beaches on this enchanting island paradise.</p>
+      <div class="destination-meta">
+        <span class="price">From $899</span>
+        <a href="bali.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.9 ★</div>
+    <img src="/images/rome.png" alt="Rome" loading="lazy">
+    <div class="destination-info">
+      <h3>Rome, Italy</h3>
+      <p>Step back in time exploring ancient ruins, indulge in authentic Italian cuisine, and toss a coin in the Trevi Fountain.</p>
+      <div class="destination-meta">
+        <span class="price">From $949</span>
+        <a href="rome.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.7 ★</div>
+    <img src="/images/capetown.png" alt="Cape Town" loading="lazy">
+    <div class="destination-info">
+      <h3>Cape Town, South Africa</h3>
+      <p>Experience stunning coastlines, Table Mountain views, and rich cultural heritage in this vibrant coastal city.</p>
+      <div class="destination-meta">
+        <span class="price">From $1,199</span>
+        <a href="capetown.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.8 ★</div>
+    <img src="/images/newyork.jpg" alt="New York" loading="lazy">
+    <div class="destination-info">
+      <h3>New York City, USA</h3>
+      <p>Explore the city that never sleeps with its iconic skyline, Broadway shows, and Central Park adventures.</p>
+      <div class="destination-meta">
+        <span class="price">From $799</span>
+        <a href="newyork.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.8 ★</div>
+    <img src="/images/sydney.png" alt="Sydney" loading="lazy">
+    <div class="destination-info">
+      <h3>Sydney, Australia</h3>
+      <p>Visit the iconic Opera House, surf at Bondi Beach, and experience the laid-back Australian lifestyle.</p>
+      <div class="destination-meta">
+        <span class="price">From $1,499</span>
+        <a href="sydney.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="destination-card">
+    <div class="rating">4.7 ★</div>
+    <img src="/images/barcelona.png" alt="Barcelona" loading="lazy">
+    <div class="destination-info">
+      <h3>Barcelona, Spain</h3>
+      <p>Admire Gaudi's architecture, stroll Las Ramblas, and enjoy tapas in this vibrant Mediterranean city.</p>
+      <div class="destination-meta">
+        <span class="price">From $849</span>
+        <a href="spain.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="destination-card">
+    <div class="rating">4.9 ★</div>
+    <img src="/images/swiss-alps.png" alt="Swiss Alps" loading="lazy">
+    <div class="destination-info">
+      <h3>Swiss Alps, Switzerland</h3>
+      <p>Ski world-class slopes, ride scenic trains, and enjoy breathtaking mountain views in this winter wonderland.</p>
+      <div class="destination-meta">
+        <span class="price">From $1,799</span>
+        <a href="swiss.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.8 ★</div>
+    <img src="/images/kyoto.png" alt="Kyoto" loading="lazy">
+    <div class="destination-info">
+      <h3>Kyoto, Japan</h3>
+      <p>Discover ancient temples, serene gardens, and traditional tea ceremonies in Japan's cultural heart.</p>
+      <div class="destination-meta">
+        <span class="price">From $1,299</span>
+        <a href="kyoto.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.6 ★</div>
+    <img src="/images/marrakech.png" alt="Marrakech" loading="lazy">
+    <div class="destination-info">
+      <h3>Marrakech, Morocco</h3>
+      <p>Get lost in colorful souks, experience luxury riads, and venture into the nearby Sahara Desert.</p>
+      <div class="destination-meta">
+        <span class="price">From $799</span>
+        <a href="marrakech.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.7 ★</div>
+    <img src="/images/rio.png" alt="Rio de Janeiro" loading="lazy">
+    <div class="destination-info">
+      <h3>Rio de Janeiro, Brazil</h3>
+      <p>Experience vibrant carnival culture, iconic beaches, and the majestic Christ the Redeemer statue.</p>
+      <div class="destination-meta">
+        <span class="price">From $1,099</span>
+        <a href="rio.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="destination-card">
+    <div class="rating">4.9 ★</div>
+    <img src="/images/iceland.png" alt="Iceland" loading="lazy">
+    <div class="destination-info">
+      <h3>Iceland</h3>
+      <p>Chase the Northern Lights, relax in geothermal springs, and explore dramatic landscapes of fire and ice.</p>
+      <div class="destination-meta">
+        <span class="price">From $1,599</span>
+        <a href="iceland.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="destination-card">
+    <div class="rating">4.7 ★</div>
+    <img src="/images/vietnam.png" alt="Vietnam" loading="lazy">
+    <div class="destination-info">
+      <h3>Ha Long Bay, Vietnam</h3>
+      <p>Cruise through limestone karsts, explore floating villages, and savor authentic Vietnamese cuisine.</p>
+      <div class="destination-meta">
+        <span class="price">From $899</span>
+        <a href="vietnam.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.8 ★</div>
+    <img src="/images/amsterdam.png" alt="Amsterdam" loading="lazy">
+    <div class="destination-info">
+      <h3>Amsterdam, Netherlands</h3>
+      <p>Cycle along picturesque canals, visit world-class museums, and experience Dutch cafe culture.</p>
+      <div class="destination-meta">
+        <span class="price">From $849</span>
+        <a href="amsterdam.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="destination-card">
+    <div class="rating">4.9 ★</div>
+    <img src="/images/petra.png" alt="Petra" loading="lazy">
+    <div class="destination-info">
+      <h3>Petra, Jordan</h3>
+      <p>Marvel at the ancient rose-colored city, explore hidden canyons, and experience Bedouin hospitality.</p>
+      <div class="destination-meta">
+        <span class="price">From $1,299</span>
+        <a href="petra.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="destination-card">
+    <div class="rating">4.8 ★</div>
+    <img src="/images/queenstown.png" alt="Queenstown" loading="lazy">
+    <div class="destination-info">
+      <h3>Queenstown, New Zealand</h3>
+      <p>Experience adventure sports, stunning alpine scenery, and locations from The Lord of the Rings.</p>
+      <div class="destination-meta">
+        <span class="price">From $1,399</span>
+        <a href="queenstown.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.9 ★</div>
+    <img src="/images/amalfi.png" alt="Amalfi Coast" loading="lazy">
+    <div class="destination-info">
+      <h3>Amalfi Coast, Italy</h3>
+      <p>Drive along dramatic coastal roads, explore colorful villages, and enjoy the Italian dolce vita.</p>
+      <div class="destination-meta">
+        <span class="price">From $1,299</span>
+        <a href="amalfi.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="destination-card">
+    <div class="rating">4.6 ★</div>
+    <img src="/images/havana.png" alt="Havana" loading="lazy">
+    <div class="destination-info">
+      <h3>Havana, Cuba</h3>
+      <p>Step back in time with vintage cars, colonial architecture, and vibrant music scenes.</p>
+      <div class="destination-meta">
+        <span class="price">From $899</span>
+        <a href="havana.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="destination-card">
+    <div class="rating">4.7 ★</div>
+    <img src="/images/cairo.png" alt="Cairo" loading="lazy">
+    <div class="destination-info">
+      <h3>Cairo, Egypt</h3>
+      <p>Explore ancient pyramids, cruise the Nile, and discover treasures in the Egyptian Museum.</p>
+      <div class="destination-meta">
+        <span class="price">From $999</span>
+        <a href="cairo.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.9 ★</div>
+    <img src="/images/seychelles.png" alt="Seychelles" loading="lazy">
+    <div class="destination-info">
+      <h3>Seychelles</h3>
+      <p>Discover pristine beaches, unique wildlife, and luxurious resorts in this tropical paradise.</p>
+      <div class="destination-meta">
+        <span class="price">From $2,299</span>
+        <a href="seychelles.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="destination-card">
+    <div class="rating">4.8 ★</div>
+    <img src="/images/singapore.png" alt="Singapore" loading="lazy">
+    <div class="destination-info">
+      <h3>Singapore</h3>
+      <p>Experience futuristic architecture, diverse culture, and world-renowned street food scene.</p>
+      <div class="destination-meta">
+        <span class="price">From $1,099</span>
+        <a href="singapore.html" class="book-btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+  <footer>
+    <p>&copy; 2024 TravelPlanner | Designed with passion</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+   
+    const userButton = document.getElementById('userButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const logoutButton = document.getElementById('logoutButton');
+
+    
+    const username = localStorage.getItem('username');
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (!isLoggedIn) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    if (isLoggedIn && username) {
+        userButton.textContent = username;
+        userButton.href = '#';
+
+        userButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('show');
+        });
+
+        window.addEventListener('click', function(e) {
+            if (!userButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
+        logoutButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('username');
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        });
+    } else {
+        userButton.textContent = 'Login';
+        userButton.href = 'login.html';
+        dropdownMenu.style.display = 'none';
+    }
+
+    
+    const destinationCards = document.querySelectorAll('.destination-card');
+    
+    
+    const regionMap = {
+        'Paris, France': 'europe',
+        'Santorini, Greece': 'europe',
+        'Tokyo, Japan': 'asia',
+        'Machu Picchu, Peru': 'americas',
+        'Maldives': 'asia',
+        'Dubai, UAE': 'asia',
+        'Bali, Indonesia': 'asia',
+        'Rome, Italy': 'europe',
+        'Cape Town, South Africa': 'africa',
+        'New York City, USA': 'americas',
+        'Sydney, Australia': 'oceania',
+        'Barcelona, Spain': 'europe',
+        'Swiss Alps, Switzerland': 'europe',
+        'Kyoto, Japan': 'asia',
+        'Marrakech, Morocco': 'africa',
+        'Rio de Janeiro, Brazil': 'americas',
+        'Iceland': 'europe',
+        'Ha Long Bay, Vietnam': 'asia',
+        'Amsterdam, Netherlands': 'europe',
+        'Petra, Jordan': 'asia',
+        'Queenstown, New Zealand': 'oceania',
+        'Amalfi Coast, Italy': 'europe',
+        'Havana, Cuba': 'americas',
+        'Cairo, Egypt': 'africa',
+        'Seychelles': 'africa',
+        'Singapore': 'asia'
+    };
+
+    
+    destinationCards.forEach(card => {
+        const title = card.querySelector('h3').textContent;
+        const region = regionMap[title];
+        if (region) {
+            card.classList.add(region.toLowerCase());
+        }
+    });
+
+    
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            
+            this.classList.add('active');
+            
+            
+            const selectedRegion = this.textContent.toLowerCase();
+            
+            
+            destinationCards.forEach(card => {
+                if (selectedRegion === 'all destinations') {
+                    card.style.display = '';  
+                } else {
+                    // Check if card has the selected region class
+                    if (card.classList.contains(selectedRegion)) {
+                        card.style.display = '';  
+                    } else {
+                        card.style.display = 'none';  
+                    }
+                }
+            });
+        });
+    });
+});
+</script>
+
+    
+</body>
+</html>

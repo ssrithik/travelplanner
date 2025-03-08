@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maldives - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/maldives.png" alt="Maldives" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Maldives</h1>
+        <p>Experience paradise on Earth with pristine beaches, crystal-clear waters, and luxurious overwater villas.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover the Islands</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/maldives1.png" alt="Overwater Villa">
+        <div class="gallery-overlay">
+          <h3>Overwater Villa</h3>
+          <p>Stay in luxurious villas perched above the turquoise lagoon.</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/maldives2.png" alt="Coral Reefs">
+        <div class="gallery-overlay">
+          <h3>Coral Reefs</h3>
+          <p>Explore vibrant coral reefs and marine life while snorkeling or diving.</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/maldives3.png" alt="Private Beach">
+        <div class="gallery-overlay">
+          <h3>Private Beach</h3>
+          <p>Relax on secluded white-sand beaches surrounded by palm trees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Maldives</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-umbrella-beach feature-icon"></i>
+        <h3>Relaxation</h3>
+        <p>Unwind in luxurious resorts and enjoy the serene beauty of the islands.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-water feature-icon"></i>
+        <h3>Adventure</h3>
+        <p>Snorkel, dive, or kayak in the crystal-clear waters.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-sun feature-icon"></i>
+        <h3>Scenery</h3>
+        <p>Witness stunning sunsets and breathtaking ocean views.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Maldives?</h2>
+    <p>Book your trip now and immerse yourself in the ultimate tropical paradise.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Maldives</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Enjoy a private breakfast on your villa deck overlooking the ocean.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Snorkel or dive to explore the vibrant coral reefs and marine life.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Relax with a beachside dinner under the stars.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Maldives</a></li>
+          <li><a href="#">Bora Bora</a></li>
+          <li><a href="#">Seychelles</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

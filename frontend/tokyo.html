@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokyo - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/tokyo.jpg" alt="Tokyo Skyline" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Tokyo</h1>
+        <p>Experience the vibrant energy, cutting-edge technology, and rich traditions of Japan's capital. From neon-lit streets to serene temples, Tokyo is a city of contrasts.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover the City</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/tokyo1.png" alt="Shibuya Crossing">
+        <div class="gallery-overlay">
+          <h3>Shibuya Crossing</h3>
+          <p>The world's busiest pedestrian crossing, a symbol of Tokyo's energy.</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/tokyo2.png" alt="Senso-ji Temple">
+        <div class="gallery-overlay">
+          <h3>Senso-ji Temple</h3>
+          <p>Tokyo's oldest temple, a serene escape in the heart of the city.</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/tokyo3.png" alt="Tokyo Tower">
+        <div class="gallery-overlay">
+          <h3>Tokyo Tower</h3>
+          <p>An iconic landmark offering panoramic views of the city.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Tokyo</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-theater-masks feature-icon"></i>
+        <h3>Culture</h3>
+        <p>From ancient temples to modern art, Tokyo is a cultural hub.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-utensils feature-icon"></i>
+        <h3>Cuisine</h3>
+        <p>Savor sushi, ramen, and other Japanese delicacies.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-landmark feature-icon"></i>
+        <h3>Innovation</h3>
+        <p>Experience cutting-edge technology and futuristic architecture.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Tokyo?</h2>
+    <p>Book your trip now and dive into the heart of Japan's capital.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Tokyo</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Start your day with a visit to the Meiji Shrine and a stroll through Harajuku.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Explore the bustling streets of Shibuya and enjoy sushi at Tsukiji Market.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Experience the nightlife in Shinjuku and enjoy views from Tokyo Tower.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Shibuya</a></li>
+          <li><a href="#">Asakusa</a></li>
+          <li><a href="#">Roppongi</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

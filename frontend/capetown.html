@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cape Town - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/capetown.png" alt="Cape Town" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Cape Town</h1>
+        <p>Experience the stunning beauty of South Africa's Mother City, where mountains meet the ocean and rich culture meets modern sophistication.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover Cape Town</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/capetown1.png" alt="Table Mountain">
+        <div class="gallery-overlay">
+          <h3>Table Mountain</h3>
+          <p>The iconic flat-topped mountain overlooking the city</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/capetown2.png" alt="V&A Waterfront">
+        <div class="gallery-overlay">
+          <h3>V&A Waterfront</h3>
+          <p>Historic harbor with shopping, dining, and entertainment</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/capetown3.png" alt="Cape Point">
+        <div class="gallery-overlay">
+          <h3>Cape Point</h3>
+          <p>Where the Atlantic and Indian Oceans meet</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Cape Town</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-mountain feature-icon"></i>
+        <h3>Nature</h3>
+        <p>Experience stunning beaches, mountains, and wildlife.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-wine-glass feature-icon"></i>
+        <h3>Wine Routes</h3>
+        <p>Explore world-renowned vineyards and wine estates.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-camera feature-icon"></i>
+        <h3>Culture</h3>
+        <p>Discover rich history and vibrant local traditions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Cape Town?</h2>
+    <p>Book your trip now and discover the magic of South Africa's most beautiful city.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Cape Town</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Take the cable car up Table Mountain for panoramic city views.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Visit the V&A Waterfront for shopping and harbor cruises.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Enjoy sunset at Camps Bay followed by world-class dining.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Cape Town</a></li>
+          <li><a href="#">Garden Route</a></li>
+          <li><a href="#">Winelands</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

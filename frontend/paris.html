@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paris - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles1.css">
+ 
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/paris.jpg" alt="Paris Skyline" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Paris</h1>
+        <p>Experience the romance, art, and timeless beauty of the City of Light. From iconic landmarks to charming streets, every moment in Paris is a story waiting to unfold.</p>
+        <button class="btn" onclick="redirect()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover the City</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/paris1.png" alt="Eiffel Tower">
+        <div class="gallery-overlay">
+          <h3>Eiffel Tower</h3>
+          <p>The symbol of Paris and a must-see landmark</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/paris2.png" alt="Louvre Museum">
+        <div class="gallery-overlay">
+          <h3>Louvre Museum</h3>
+          <p>Home to the Mona Lisa and countless masterpieces</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/paris3.png" alt="Montmartre">
+        <div class="gallery-overlay">
+          <h3>Montmartre</h3>
+          <p>Artistic charm and stunning views of the city</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Paris</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-theater-masks feature-icon"></i>
+        <h3>Art & Culture</h3>
+        <p>From the Louvre to street art, Paris is a haven for art lovers.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-utensils feature-icon"></i>
+        <h3>Cuisine</h3>
+        <p>Indulge in world-class pastries, wine, and French cuisine.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-landmark feature-icon"></i>
+        <h3>History</h3>
+        <p>Explore centuries of history in its architecture and landmarks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Paris?</h2>
+    <p>Book your trip now and fall in love with the City of Light.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Paris</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Start your day with a croissant and coffee at a café, then visit the Eiffel Tower.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Explore the Louvre Museum and stroll along the Seine River.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Enjoy a romantic dinner in Montmartre and watch the sunset from Sacré-Cœur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Eiffel Tower</a></li>
+          <li><a href="#">Louvre</a></li>
+          <li><a href="#">Montmartre</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+    function redirect(){
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

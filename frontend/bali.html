@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bali - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/bali.png" alt="Bali" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Bali</h1>
+        <p>Discover the island of gods, with its stunning beaches, vibrant culture, and lush landscapes.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover Bali</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/bali2.png" alt="Uluwatu Temple">
+        <div class="gallery-overlay">
+          <h3>Uluwatu Temple</h3>
+          <p>A majestic sea temple perched on a cliff overlooking the Indian Ocean.</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/bali3.png" alt="Tegalalang Rice Terraces">
+        <div class="gallery-overlay">
+          <h3>Tegalalang Rice Terraces</h3>
+          <p>Stunning terraced rice fields in the heart of Ubud.</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/bali4.png" alt="Mount Batur">
+        <div class="gallery-overlay">
+          <h3>Mount Batur</h3>
+          <p>Hike to the summit for a breathtaking sunrise view.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Bali</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-umbrella-beach feature-icon"></i>
+        <h3>Beaches</h3>
+        <p>Relax on pristine beaches with crystal-clear waters.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-spa feature-icon"></i>
+        <h3>Wellness</h3>
+        <p>Indulge in world-class spas and yoga retreats.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-camera feature-icon"></i>
+        <h3>Culture</h3>
+        <p>Experience vibrant traditions and ceremonies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Bali?</h2>
+    <p>Book your trip now and immerse yourself in the beauty of the island of gods.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Bali</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Watch the sunrise at Mount Batur and enjoy a healthy breakfast.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Explore Ubud's rice terraces and visit local artisans.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Relax on Seminyak Beach and enjoy a seafood dinner.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Bali</a></li>
+          <li><a href="#">Ubud</a></li>
+          <li><a href="#">Nusa Dua</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

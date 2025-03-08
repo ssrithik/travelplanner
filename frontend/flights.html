@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Flight - TravelPlanner</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            color: #ff7f50;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .flight-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .flight-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .flight-info {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .airline-logo {
+            width: 60px;
+            height: 60px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flight-details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .flight-time {
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .flight-duration {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .flight-price {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #ff7f50;
+        }
+
+        .select-btn {
+            padding: 10px 20px;
+            background: #ff7f50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .select-btn:hover {
+            background: #ff6b3d;
+        }
+
+        .flight-filters {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .no-flights {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .airline-logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">TravelPlanner</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 style="margin-bottom: 20px;">Select Your Flight</h1>
+        
+        <div class="flight-filters">
+            <div class="filter-group">
+                <label>Sort by:</label>
+                <select id="sortFilter" onchange="updateFlights()">
+                    <option value="price">Price</option>
+                    <option value="duration">Duration</option>
+                    <option value="departure">Departure Time</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Airlines:</label>
+                <select id="airlineFilter" onchange="updateFlights()">
+                    <option value="all">All Airlines</option>
+                    <option value="delta">Delta Airlines</option>
+                    <option value="united">United Airlines</option>
+                    <option value="emirates">Emirates</option>
+                    <option value="british">British Airways</option>
+                    <option value="airfrance">Air France</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="flightsList"></div>
+    </div>
+    <script>
+        const airlinesData = {
+            'Delta Airlines': {
+                logo: '/images/delta-airlines.svg',
+                code: 'delta'
+            },
+            'United Airlines': {
+                logo: '/images/united-airlines.png',
+                code: 'united'
+            },
+            'Emirates': {
+                logo: '/images/emirates.png',
+                code: 'emirates'
+            },
+            'British Airways': {
+                logo: '/images/british-airways.png',
+                code: 'british'
+            },
+            'Air France': {
+                logo: '/images/air-france.png',
+                code: 'airfrance'
+            }
+        };
+        function generateFlights(destination) {
+            const airlines = Object.keys(airlinesData);
+            const flights = [];
+            
+            airlines.forEach(airline => {
+                const numFlights = Math.floor(Math.random() * 3) + 1; // 1-3 flights per airline
+                for (let i = 0; i < numFlights; i++) {
+                    const departureHour = 6 + Math.floor(Math.random() * 12);
+                    const durationHours = Math.floor(Math.random() * 5) + 4;
+                    const durationMinutes = Math.floor(Math.random() * 60);
+                    const basePrice = Math.floor(Math.random() * 300) + 200;
+                    
+                    flights.push({
+                        airline: airline,
+                        airlineCode: airlinesData[airline].code,
+                        airlineLogo: airlinesData[airline].logo,
+                        departure: `${departureHour}:${Math.random() < 0.5 ? '00' : '30'} AM`,
+                        arrival: `${(departureHour + durationHours) % 12 || 12}:${Math.random() < 0.5 ? '00' : '30'} ${departureHour + durationHours >= 12 ? 'PM' : 'AM'}`,
+                        duration: {
+                            hours: durationHours,
+                            minutes: durationMinutes,
+                            text: `${durationHours}h ${durationMinutes}m`
+                        },
+                        price: basePrice,
+                        departureTimestamp: departureHour * 60,
+                        flightNumber: `${airline.substring(0,2).toUpperCase()}${Math.floor(Math.random() * 9000) + 1000}`
+                    });
+                }
+            });
+            return flights;
+        }
+
+        let allFlights = [];
+
+        function initializeFlights() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const destination = urlParams.get('destination');
+            allFlights = generateFlights(destination);
+            updateFlights();
+        }
+
+        function sortFlights(flights, sortBy) {
+            switch(sortBy) {
+                case 'price':
+                    return flights.sort((a, b) => a.price - b.price);
+                case 'duration':
+                    return flights.sort((a, b) => {
+                        const aDuration = a.duration.hours * 60 + a.duration.minutes;
+                        const bDuration = b.duration.hours * 60 + b.duration.minutes;
+                        return aDuration - bDuration;
+                    });
+                case 'departure':
+                    return flights.sort((a, b) => a.departureTimestamp - b.departureTimestamp);
+                default:
+                    return flights;
+            }
+        }
+
+        function filterFlights(flights, airline) {
+            if (airline === 'all') return flights;
+            return flights.filter(flight => flight.airlineCode === airline);
+        }
+
+        function updateFlights() {
+            const sortBy = document.getElementById('sortFilter').value;
+            const airlineFilter = document.getElementById('airlineFilter').value;
+            
+            let filteredFlights = filterFlights(allFlights, airlineFilter);
+            filteredFlights = sortFlights(filteredFlights, sortBy);
+            
+            displayFlights(filteredFlights);
+        }
+
+        function displayFlights(flights) {
+            const flightsList = document.getElementById('flightsList');
+            
+            if (flights.length === 0) {
+                flightsList.innerHTML = `
+                    <div class="no-flights">
+                        <h3>No flights found matching your criteria</h3>
+                        <p>Try adjusting your filters</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            flightsList.innerHTML = flights.map(flight => `
+                <div class="flight-card" onclick="selectFlight('${flight.airline}', ${flight.price}, '${flight.departure}', '${flight.arrival}', '${flight.duration.text}', '${flight.flightNumber}')">
+                    <div class="flight-info">
+                        <div class="airline-logo">
+                            <img src="${flight.airlineLogo}" alt="${flight.airline}" onerror="this.src='/images/default-airline.png';" />
+                        </div>
+                        <div class="flight-details">
+                            <div class="flight-time">${flight.departure} - ${flight.arrival}</div>
+                            <div class="airline-name">${flight.airline}</div>
+                            <div class="flight-duration">${flight.duration.text}</div>
+                            <div class="flight-number">Flight #: ${flight.flightNumber}</div>
+                        </div>
+                    </div>
+                    <div class="price-section">
+                        <div class="flight-price">$${flight.price}</div>
+                        <button class="select-btn">Select</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selectFlight(airline, price, departure, arrival, duration, flightNumber) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const baseAmount = urlParams.get('amount');
+            const destination = urlParams.get('destination');
+            const totalAmount = parseInt(baseAmount) + price;
+            
+          
+            const flightDetails = {
+                airline,
+                price,
+                departure,
+                arrival,
+                duration,
+                flightNumber
+            };
+            
+            localStorage.setItem('selectedFlight', JSON.stringify(flightDetails));
+            
+            // Get the booking details from localStorage
+            const bookingDetails = JSON.parse(localStorage.getItem('bookingDetails') || '{}');
+            
+            // Update the total price with flight price
+            bookingDetails.totalPriceWithFlight = totalAmount;
+            localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+            
+            // Redirect to payment page
+            window.location.href = `payment.html?amount=${totalAmount}`;
+        }
+
+        initializeFlights();
+   
+    </script>
+</body>
+</html>

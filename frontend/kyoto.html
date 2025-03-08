@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kyoto - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/kyoto.png" alt="Kyoto" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Kyoto</h1>
+        <p>Experience the timeless beauty of Japan's cultural heart, where ancient temples meet serene gardens and traditional tea houses line historic streets.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover Kyoto</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/kyoto1.png" alt="Kinkaku-ji">
+        <div class="gallery-overlay">
+          <h3>Kinkaku-ji</h3>
+          <p>The stunning Golden Pavilion reflecting in its mirror pond</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/kyoto2.png" alt="Fushimi Inari">
+        <div class="gallery-overlay">
+          <h3>Fushimi Inari</h3>
+          <p>Thousands of vermillion torii gates winding through the mountain</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/kyoto3.png" alt="Arashiyama">
+        <div class="gallery-overlay">
+          <h3>Arashiyama</h3>
+          <p>Famous bamboo grove and traditional district</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Kyoto</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-temple feature-icon"></i>
+        <h3>Culture</h3>
+        <p>Ancient temples and traditional ceremonies.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-utensils feature-icon"></i>
+        <h3>Cuisine</h3>
+        <p>Experience authentic Kyoto kaiseki dining.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-spa feature-icon"></i>
+        <h3>Zen</h3>
+        <p>Peaceful gardens and meditation spaces.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Kyoto?</h2>
+    <p>Book your trip now and discover the magic of Japan's ancient capital.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Kyoto</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Early visit to peaceful temples and traditional tea ceremony.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Explore historic Gion district and try on a kimono.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Traditional kaiseki dinner in a historic machiya house.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Gion</a></li>
+          <li><a href="#">Arashiyama</a></li>
+          <li><a href="#">Higashiyama</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

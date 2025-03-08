@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santorini - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/santorini-greece.png" alt="Santorini" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Santorini</h1>
+        <p>Discover the charm of whitewashed buildings, blue-domed churches, and breathtaking sunsets over the Aegean Sea. Santorini is a dream destination for romance and relaxation.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover the Island</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/santorini1.png" alt="Oia Village">
+        <div class="gallery-overlay">
+          <h3>Oia Village</h3>
+          <p>Famous for its stunning sunsets and picturesque streets</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/santorini2.png" alt="Red Beach">
+        <div class="gallery-overlay">
+          <h3>Red Beach</h3>
+          <p>A unique beach with red volcanic sand and cliffs</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/santorini3.png" alt="Caldera Views">
+        <div class="gallery-overlay">
+          <h3>Caldera Views</h3>
+          <p>Breathtaking views of the volcanic caldera</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Santorini</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-umbrella-beach feature-icon"></i>
+        <h3>Beaches</h3>
+        <p>Relax on unique beaches with red, black, and white sands.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-wine-glass-alt feature-icon"></i>
+        <h3>Wine</h3>
+        <p>Taste world-renowned wines from local vineyards.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-camera feature-icon"></i>
+        <h3>Views</h3>
+        <p>Capture unforgettable views of the Aegean Sea.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Santorini?</h2>
+    <p>Book your trip now and immerse yourself in the beauty of the Greek islands.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Santorini</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Explore the charming streets of Oia and enjoy a traditional Greek breakfast.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Visit the Red Beach and relax under the Mediterranean sun.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Watch the sunset from a cliffside restaurant and savor fresh seafood.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Oia</a></li>
+          <li><a href="#">Fira</a></li>
+          <li><a href="#">Akrotiri</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

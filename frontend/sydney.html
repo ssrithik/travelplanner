@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sydney - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/sydney.png" alt="Sydney" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Sydney</h1>
+        <p>Discover Australia's most iconic city, where stunning harbor views meet world-class culture and endless coastal adventures.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover Sydney</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/sydney1.png" alt="Sydney Opera House">
+        <div class="gallery-overlay">
+          <h3>Sydney Opera House</h3>
+          <p>The world-famous architectural masterpiece</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/sydney2.png" alt="Bondi Beach">
+        <div class="gallery-overlay">
+          <h3>Bondi Beach</h3>
+          <p>Iconic beach culture and coastal walks</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/sydney3.png" alt="Harbour Bridge">
+        <div class="gallery-overlay">
+          <h3>Harbour Bridge</h3>
+          <p>Climb the famous 'Coathanger' for spectacular views</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Sydney</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-water feature-icon"></i>
+        <h3>Beaches</h3>
+        <p>Experience world-famous beaches and coastal lifestyle.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-city feature-icon"></i>
+        <h3>Culture</h3>
+        <p>Explore arts, entertainment, and diverse cuisine.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-camera feature-icon"></i>
+        <h3>Icons</h3>
+        <p>Visit some of the world's most recognizable landmarks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Sydney?</h2>
+    <p>Book your trip now and discover the magic of Australia's harbor city.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Sydney</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Start with a sunrise walk at Bondi Beach and coastal breakfast.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Tour the Opera House and explore Circular Quay.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Enjoy harbor dinner cruise and Darling Harbour nightlife.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Sydney</a></li>
+          <li><a href="#">Blue Mountains</a></li>
+          <li><a href="#">Hunter Valley</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

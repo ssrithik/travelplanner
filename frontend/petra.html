@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petra - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/petra.png" alt="Petra" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Petra</h1>
+        <p>Step into the ancient world of the Nabataeans, where rose-red cliffs hide magnificent temples and tombs, and centuries of history are carved into the very stone of Jordan's most famous wonder.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover Petra</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/petra1.png" alt="The Treasury">
+        <div class="gallery-overlay">
+          <h3>The Treasury</h3>
+          <p>Marvel at the iconic Al-Khazneh carved into rose-red cliff</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/petra2.png" alt="Monastery">
+        <div class="gallery-overlay">
+          <h3>The Monastery</h3>
+          <p>Climb 800 steps to reach this magnificent monument</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/petra3.png" alt="Siq">
+        <div class="gallery-overlay">
+          <h3>The Siq</h3>
+          <p>Walk through the dramatic natural entrance to Petra</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Petra</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-landmark feature-icon"></i>
+        <h3>Ancient Wonder</h3>
+        <p>UNESCO World Heritage site and one of the New Seven Wonders.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-mountain feature-icon"></i>
+        <h3>Rock Architecture</h3>
+        <p>Stunning temples and tombs carved into red rock.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-compass feature-icon"></i>
+        <h3>Ancient History</h3>
+        <p>2000+ years of fascinating Nabataean history.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Petra?</h2>
+    <p>Book your trip now and discover the magic of the Rose City.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Petra</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Sunrise walk through the Siq to Treasury.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Hike to the Monastery and Royal Tombs.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Petra by Night candlelit experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">The Treasury</a></li>
+          <li><a href="#">The Monastery</a></li>
+          <li><a href="#">High Place of Sacrifice</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

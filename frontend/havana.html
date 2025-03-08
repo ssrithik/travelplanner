@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Havana - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/havana.png" alt="Havana" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to Havana</h1>
+        <p>Step into a living museum where vintage cars roll past colorful colonial buildings, salsa music fills the air, and time seems to stand still in Cuba's vibrant, historic capital.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover Havana</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/havana1.png" alt="Old Havana">
+        <div class="gallery-overlay">
+          <h3>Old Havana</h3>
+          <p>UNESCO World Heritage site with colonial architecture</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/havana2.png" alt="Classic Cars">
+        <div class="gallery-overlay">
+          <h3>Classic Cars</h3>
+          <p>Vintage American cars from the 1950s</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/havana3.png" alt="Cuban Culture">
+        <div class="gallery-overlay">
+          <h3>Cuban Culture</h3>
+          <p>Vibrant music, dance, and art scene</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit Havana</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-music feature-icon"></i>
+        <h3>Rich Culture</h3>
+        <p>Salsa, rumba, and authentic Cuban music.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-building feature-icon"></i>
+        <h3>Historic Architecture</h3>
+        <p>Colonial buildings and vintage charm.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-cocktail feature-icon"></i>
+        <h3>Cuban Lifestyle</h3>
+        <p>Mojitos, cigars, and Caribbean vibes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience Havana?</h2>
+    <p>Book your trip now and discover Cuba's enchanting capital city.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in Havana</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Walking tour of Old Havana's plazas.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Classic car tour along the Malecón.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Salsa dancing at Casa de la Música.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Old Havana</a></li>
+          <li><a href="#">Vedado</a></li>
+          <li><a href="#">Miramar</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function redirectToBooking() {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

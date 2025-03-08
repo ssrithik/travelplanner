@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New York - Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">TravelPlanner</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img src="/images/newyork.png" alt="New York Skyline" class="hero-image">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to New York</h1>
+        <p>Experience the energy, diversity, and endless possibilities of the city that never sleeps. From iconic landmarks to hidden gems, every moment in New York is an adventure waiting to happen.</p>
+        <button class="btn" onclick="redirectToBooking()">Start Your Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2 class="section-title">Discover the City</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/images/newyork1.png" alt="Times Square">
+        <div class="gallery-overlay">
+          <h3>Times Square</h3>
+          <p>The heart of entertainment and bright lights</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/newyork2.png" alt="Central Park">
+        <div class="gallery-overlay">
+          <h3>Central Park</h3>
+          <p>An urban oasis in the heart of Manhattan</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/newyork3.png" alt="Brooklyn Bridge">
+        <div class="gallery-overlay">
+          <h3>Brooklyn Bridge</h3>
+          <p>Iconic views and architectural marvel</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Visit New York</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-theater-masks feature-icon"></i>
+        <h3>Entertainment</h3>
+        <p>From Broadway shows to street performances, entertainment is around every corner.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-utensils feature-icon"></i>
+        <h3>Cuisine</h3>
+        <p>Experience world-class dining and diverse food scenes from every culture.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-landmark feature-icon"></i>
+        <h3>Culture</h3>
+        <p>Museums, galleries, and historic sites showcase the city's rich heritage.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Ready to Experience New York?</h2>
+    <p>Book your trip now and create unforgettable memories in the Big Apple.</p>
+    <button class="btn" onclick="redirectToBooking()">Book Your Trip</button>
+  </section>
+
+  <section class="timeline">
+    <h2 class="section-title">Perfect Day in NYC</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Morning</h3>
+          <p>Start your day with a walk through Central Park, followed by breakfast at a classic NYC deli.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Afternoon</h3>
+          <p>Visit world-famous museums and explore iconic neighborhoods like SoHo and Greenwich Village.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Evening</h3>
+          <p>Catch a Broadway show and end your night with dinner at a rooftop restaurant.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Manhattan</a></li>
+          <li><a href="#">Brooklyn</a></li>
+          <li><a href="#">Queens</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+     function redirectToBooking()
+    {
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

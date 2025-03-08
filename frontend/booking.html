@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Trip - TravelPlanner</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            padding-top: 70px; 
+        }
+
+        .navbar {
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            color: #ff7f50;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ff7f50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto 50px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .dates-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .dates-group .form-group {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #ff7f50;
+        }
+
+        .activities-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+        }
+
+        .price-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 5px 0;
+        }
+
+        .total-price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ff7f50;
+            border-top: 2px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .book-btn {
+            width: 100%;
+            padding: 15px;
+            background: #ff7f50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .book-btn:hover {
+            background: #ff6b3d;
+        }
+
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .travel-dates-container {
+            margin-bottom: 25px;
+        }
+
+        .travel-dates-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .date-input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .date-input-group label {
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .date-input-group input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .date-input-group input:focus {
+            outline: none;
+            border-color: #ff7f50;
+            box-shadow: 0 0 0 2px rgba(255, 127, 80, 0.1);
+        }
+
+        .date-input-group small {
+            color: #666;
+            margin-top: 5px;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">TravelPlanner</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Book Your Dream Vacation</h1>
+        <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="destination">Select Destination:</label>
+                <select id="destination" required onchange="updateActivitiesAndPrice()">
+                    <option value="">Choose your destination</option>
+                </select>
+            </div>
+
+            <div class="travel-dates-container">
+                <h3 style="margin-bottom: 15px;">Travel Dates:</h3>
+                <div class="travel-dates-grid">
+                    <div class="date-input-group">
+                        <label for="departure">Departure Date</label>
+                        <input type="date" id="departure" required min="">
+                        <small>When do you want to start your journey?</small>
+                    </div>
+                    
+                    <div class="date-input-group">
+                        <label for="return">Return Date</label>
+                        <input type="date" id="return" required>
+                        <small>When do you plan to return?</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="travelers">Number of Travelers:</label>
+                <input type="number" id="travelers" min="1" value="1" required onchange="updateTotal()">
+            </div>
+
+            <div class="form-group">
+                <label for="accommodation">Accommodation Type:</label>
+                <select id="accommodation" required onchange="updateTotal()">
+                    <option value="standard">Standard</option>
+                    <option value="deluxe">Deluxe</option>
+                    <option value="luxury">Luxury</option>
+                </select>
+            </div>
+
+            <div class="activities-container">
+                <label>Available Activities:</label>
+                <div id="activities-list" class="activities-grid"></div>
+            </div>
+
+            <div class="price-summary">
+                <h3>Price Summary</h3>
+                <div class="price-row">
+                    <span>Base Price (per person):</span>
+                    <span id="base-price">$0</span>
+                </div>
+                <div class="price-row">
+                    <span>Accommodation Surcharge:</span>
+                    <span id="accommodation-price">$0</span>
+                </div>
+                <div class="price-row">
+                    <span>Activities Cost:</span>
+                    <span id="activities-cost">$0</span>
+                </div>
+                <div class="price-row total-price">
+                    <span>Total Amount:</span>
+                    <span id="total-price">$0</span>
+                </div>
+            </div>
+
+            <button type="submit" class="book-btn">Book Now</button>
+        </form>
+    </div>
+
+    <script>
+        const todays = new Date().toISOString().split('T')[0];
+        document.getElementById('departure').min = todays;
+
+        document.getElementById('departure').addEventListener('change', function() {
+            const returnInput = document.getElementById('return');
+            returnInput.min = this.value;
+            if (returnInput.value && returnInput.value < this.value) {
+                returnInput.value = this.value;
+            }
+        });
+        const destinationsData = {
+            'Paris, France': { basePrice: 899, activities: ['Eiffel Tower Tour', 'Louvre Museum Visit', 'Seine River Cruise'] },
+            'Santorini, Greece': { basePrice: 1099, activities: ['Sunset Cruise', 'Wine Tasting', 'Ancient Thira Tour'] },
+            'Tokyo, Japan': { basePrice: 1299, activities: ['Mount Fuji Day Trip', 'Shibuya Crossing Walk', 'Akihabara Shopping'] },
+            'Machu Picchu, Peru': { basePrice: 1499, activities: ['Inca Trail Trek', 'Sacred Valley Tour', 'Cusco City Tour'] },
+            'Maldives': { basePrice: 2199, activities: ['Snorkeling Tour', 'Island Hopping', 'Sunset Fishing'] },
+            'Dubai, UAE': { basePrice: 999, activities: ['Desert Safari', 'Burj Khalifa Visit', 'Dubai Mall Shopping'] },
+            'Bali, Indonesia': { basePrice: 899, activities: ['Temple Tour', 'Rice Terrace Visit', 'Sunset Beach Dinner'] },
+            'Rome, Italy': { basePrice: 949, activities: ['Colosseum Tour', 'Vatican Museums', 'Roman Forum Visit'] },
+            'Cape Town, South Africa': { basePrice: 1199, activities: ['Table Mountain Hike', 'Wine Tour', 'Cape Peninsula Drive'] },
+            'New York City, USA': { basePrice: 799, activities: ['Statue of Liberty Visit', 'Broadway Show', 'Central Park Tour'] },
+            'Sydney, Australia': { basePrice: 1499, activities: ['Opera House Tour', 'Bondi Beach Visit', 'Harbor Cruise'] },
+            'Barcelona, Spain': { basePrice: 849, activities: ['Sagrada Familia Tour', 'Las Ramblas Walk', 'Park Güell Visit'] },
+            'Swiss Alps, Switzerland': { basePrice: 1799, activities: ['Ski Pass', 'Mountain Train Ride', 'Alpine Village Tour'] },
+            'Kyoto, Japan': { basePrice: 1299, activities: ['Temple Tour', 'Tea Ceremony', 'Bamboo Forest Visit'] },
+            'Marrakech, Morocco': { basePrice: 799, activities: ['Medina Tour', 'Desert Excursion', 'Cooking Class'] },
+            'Rio de Janeiro, Brazil': { basePrice: 1099, activities: ['Christ the Redeemer Visit', 'Copacabana Beach Day', 'Samba Show'] },
+            'Iceland': { basePrice: 1599, activities: ['Northern Lights Tour', 'Blue Lagoon Visit', 'Golden Circle Tour'] },
+            'Ha Long Bay, Vietnam': { basePrice: 899, activities: ['Bay Cruise', 'Cave Exploration', 'Kayaking'] },
+            'Amsterdam, Netherlands': { basePrice: 849, activities: ['Canal Cruise', 'Van Gogh Museum', 'Bike Tour'] },
+            'Petra, Jordan': { basePrice: 1299, activities: ['Treasury Visit', 'Monastery Hike', 'Bedouin Experience'] },
+            'Queenstown, New Zealand': { basePrice: 1399, activities: ['Bungee Jumping', 'Milford Sound Tour', 'Skiing'] },
+            'Amalfi Coast, Italy': { basePrice: 1299, activities: ['Coastal Drive', 'Pompeii Visit', 'Limoncello Tasting'] },
+            'Havana, Cuba': { basePrice: 899, activities: ['Classic Car Tour', 'Salsa Dancing', 'Cigar Factory Visit'] },
+            'Cairo, Egypt': { basePrice: 999, activities: ['Pyramid Tour', 'Nile Cruise', 'Museum Visit'] },
+            'Seychelles': { basePrice: 2299, activities: ['Island Tour', 'Snorkeling Trip', 'Nature Walk'] },
+            'Singapore': { basePrice: 1099, activities: ['Gardens by the Bay', 'Marina Bay Sands', 'Night Safari'] }
+        };
+
+   
+        const destinationSelect = document.getElementById('destination');
+        Object.keys(destinationsData).forEach(destination => {
+            const option = document.createElement('option');
+            option.value = destination;
+            option.textContent = destination;
+            destinationSelect.appendChild(option);
+        });
+
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('departure').min = today;
+
+        function updateActivitiesAndPrice() {
+            const destination = document.getElementById('destination').value;
+            const activitiesList = document.getElementById('activities-list');
+            activitiesList.innerHTML = '';
+
+            if (destination && destinationsData[destination]) {
+                destinationsData[destination].activities.forEach(activity => {
+                    const div = document.createElement('div');
+                    div.className = 'activity-item';
+                    div.innerHTML = `
+                        <input type="checkbox" id="${activity}" name="activities" onchange="updateTotal()">
+                        <label for="${activity}">${activity}</label>
+                    `;
+                    activitiesList.appendChild(div);
+                });
+            }
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const destination = document.getElementById('destination').value;
+            const travelers = parseInt(document.getElementById('travelers').value) || 1;
+            const accommodation = document.getElementById('accommodation').value;
+            
+            if (!destination || !destinationsData[destination]) return;
+
+            const basePrice = destinationsData[destination].basePrice;
+            let accommodationMultiplier = 1;
+            
+            switch(accommodation) {
+                case 'deluxe':
+                    accommodationMultiplier = 1.3;
+                    break;
+                case 'luxury':
+                    accommodationMultiplier = 1.6;
+                    break;
+            }
+
+            const selectedActivities = document.querySelectorAll('input[name="activities"]:checked').length;
+            const activityCost = selectedActivities * 99;
+
+            const accommodationCost = (basePrice * (accommodationMultiplier - 1));
+            const totalPerPerson = basePrice + accommodationCost + activityCost;
+            const grandTotal = totalPerPerson * travelers;
+
+            document.getElementById('base-price').textContent = `$${basePrice}`;
+            document.getElementById('accommodation-price').textContent = `$${accommodationCost.toFixed(0)}`;
+            document.getElementById('activities-cost').textContent = `$${activityCost}`;
+            document.getElementById('total-price').textContent = `$${grandTotal.toFixed(0)}`;
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Get all the booking information
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const destination = document.getElementById('destination').value;
+            const departureDate = document.getElementById('departure').value;
+            const returnDate = document.getElementById('return').value;
+            const travelers = document.getElementById('travelers').value;
+            const accommodation = document.getElementById('accommodation').value;
+            
+            // Get selected activities
+            const selectedActivities = [];
+            document.querySelectorAll('input[name="activities"]:checked').forEach(checkbox => {
+                selectedActivities.push(checkbox.id);
+            });
+            
+            // Get pricing information
+            const basePrice = document.getElementById('base-price').textContent;
+            const accommodationPrice = document.getElementById('accommodation-price').textContent;
+            const activitiesCost = document.getElementById('activities-cost').textContent;
+            const totalPrice = document.getElementById('total-price').textContent.replace('$', '');
+            
+            // Store booking information in localStorage
+            const bookingDetails = {
+                name,
+                email,
+                destination,
+                departureDate,
+                returnDate,
+                travelers,
+                accommodation,
+                selectedActivities,
+                basePrice,
+                accommodationPrice,
+                activitiesCost,
+                totalPrice
+            };
+            
+            localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+            
+           
+            window.location.href = `flights.html?amount=${totalPrice}&destination=${encodeURIComponent(destination)}`;
+        }
+    </script>
+</body>
+</html>
