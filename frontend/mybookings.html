@@ -94,6 +94,7 @@
       justify-content: center;
       text-align: center;
       padding: 0 20px;
+      margin-top: 60px; /* Add margin to prevent navbar overlap */
     }
 
     .page-header h1 {
@@ -304,6 +305,31 @@
       bottom: 0;
       width: 100%;
     }
+    
+    /* Additional CSS for flight and accommodation details */
+    .booking-flight-details,
+    .booking-accommodation-details {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+    }
+    
+    .booking-reference {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .detail-item {
+      display: flex;
+      margin-bottom: 5px;
+    }
+    
+    .detail-label {
+      font-weight: 600;
+      width: 120px;
+    }
   </style>
 </head>
 <body>
@@ -345,18 +371,115 @@
   <footer>
     <p>&copy; 2024 TravelPlanner | Designed with passion</p>
   </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      
-      const userButton = document.getElementById('userButton');
-      const dropdownMenu = document.getElementById('dropdownMenu');
-      const logoutButton = document.getElementById('logoutButton');
-      const bookingsContainer = document.getElementById('bookingsContainer');
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const loadingMessage = document.getElementById('loadingMessage');
-      
-      
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  
+    const userButton = document.getElementById('userButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const logoutButton = document.getElementById('logoutButton');
+    const bookingsContainer = document.getElementById('bookingsContainer');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const loadingMessage = document.getElementById('loadingMessage');
+    
+    const destinationImages = {
+  'Paris': '/images/paris.jpg',
+  'London': '/images/london.jpg',
+  'New York': '/images/newyork.jpg',
+  'Tokyo': '/images/tokyo.jpg',
+  'Rome': '/images/rome.jpg',
+  'Bali': '/images/bali.jpg',
+  'Dubai': '/images/dubai.jpg',
+  'Sydney': '/images/sydney.jpg',
+  'Barcelona,Spain': '/images/barcelona.png',
+  'Iceland': '/images/iceland.png'  
+};
+    
+    
+    const defaultImage = '/images/travel-bg.jpg';
+    
+    
+    checkAuthStatus();
+    
+    
+    async function checkAuthStatus() {
+      try {
+        const response = await fetch('/api/auth/status', {
+          credentials: 'include' // Important for session cookies
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch auth status');
+        }
+        
+        const data = await response.json();
+        
+        if (data.loggedIn) {
+          userButton.textContent = data.username;
+          userButton.href = '#';
+          localStorage.setItem('username', data.username);
+          localStorage.setItem('isLoggedIn', "true");
+          
+          // Setup dropdown toggle
+          userButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('show');
+          });
+          
+          // Close dropdown when clicking outside
+          window.addEventListener('click', function(e) {
+            if (!userButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+              dropdownMenu.classList.remove('show');
+            }
+          });
+          
+          // Logout functionality
+          logoutButton.addEventListener('click', async function(e) {
+            e.preventDefault();
+            try {
+              const response = await fetch('/logout', {
+                method: 'POST',
+                credentials: 'include'
+              });
+              
+              if (!response.ok) {
+                throw new Error('Logout failed');
+              }
+              
+              localStorage.removeItem('username');
+              localStorage.removeItem('isLoggedIn');
+              window.location.href = 'login.html';
+            } catch (error) {
+              console.error('Error during logout:', error);
+              alert('Failed to logout. Please try again.');
+            }
+          });
+          
+          // Load bookings
+          fetchBookings();
+        } else {
+          userButton.textContent = 'Login';
+          userButton.href = 'login.html';
+          dropdownMenu.style.display = 'none';
+          
+          // Show message for non-logged in users
+          loadingMessage.style.display = 'none';
+          bookingsContainer.innerHTML = `
+            <div class="no-bookings">
+              <h3>You need to log in to view your bookings</h3>
+              <p>Please log in to access your booking information</p>
+              <a href="login.html" class="btn btn-primary">Log In</a>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error('Error checking auth status:', error);
+        // Fallback to localStorage if server check fails
+        setupFromLocalStorage();
+      }
+    }
+    
+    // Fallback to localStorage if server check fails
+    function setupFromLocalStorage() {
       const username = localStorage.getItem('username');
       const isLoggedIn = localStorage.getItem('isLoggedIn') === "true";
       
@@ -364,20 +487,17 @@
         userButton.textContent = username;
         userButton.href = '#';
         
-        
         userButton.addEventListener('click', function(e) {
           e.preventDefault();
           dropdownMenu.classList.toggle('show');
         });
         
-        // Close dropdown when clicking outside
         window.addEventListener('click', function(e) {
           if (!userButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
             dropdownMenu.classList.remove('show');
           }
         });
         
-        // Logout functionality
         logoutButton.addEventListener('click', function(e) {
           e.preventDefault();
           localStorage.removeItem('username');
@@ -385,14 +505,12 @@
           window.location.href = 'login.html';
         });
         
-        // Load real bookings data
         fetchBookings();
       } else {
         userButton.textContent = 'Login';
         userButton.href = 'login.html';
         dropdownMenu.style.display = 'none';
         
-        // Show message for non-logged in users
         loadingMessage.style.display = 'none';
         bookingsContainer.innerHTML = `
           <div class="no-bookings">
@@ -402,146 +520,289 @@
           </div>
         `;
       }
-      
-      // Filter functionality
-      filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const filter = this.getAttribute('data-filter');
-          
-          // Toggle active class
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          this.classList.add('active');
-          
-          // Apply filter if user is logged in
-          if (isLoggedIn) {
-            filterBookings(filter);
-          }
-        });
+    }
+    
+    // Filter functionality
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        
+        // Toggle active class
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Apply filter if user is logged in
+        if (localStorage.getItem('isLoggedIn') === "true") {
+          filterBookings(filter);
+        }
       });
+    });
+    
+    async function fetchBookings() {
+      try {
+        loadingMessage.style.display = 'block';
+        
+        // Fetch bookings with credentials to include cookies
+        const bookingsResponse = await fetch('/api/my-bookings', {
+          credentials: 'include'
+        });
+        
+        if (bookingsResponse.status === 401) {
+          throw new Error('User not authenticated');
+        }
+        
+        if (!bookingsResponse.ok) {
+          throw new Error('Failed to fetch bookings');
+        }
+        
+        const bookings = await bookingsResponse.json();
+        loadingMessage.style.display = 'none';
+        
+        if (bookings.length > 0) {
+          renderBookings(bookings);
+        } else {
+          bookingsContainer.innerHTML = `
+            <div class="no-bookings">
+              <h3>You don't have any bookings yet</h3>
+              <p>Start exploring destinations and book your next adventure!</p>
+              <a href="explore.html" class="explore-btn">Explore Destinations</a>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error('Error fetching bookings:', error);
+        loadingMessage.style.display = 'none';
+        bookingsContainer.innerHTML = `
+          <div class="no-bookings">
+            <h3>Error Loading Bookings</h3>
+            <p>We encountered an issue fetching your bookings. Please try again later.</p>
+            <button class="btn btn-primary" onclick="fetchBookings()">Retry</button>
+          </div>
+        `;
+      }
+    }
+    
+    function renderBookings(bookings) {
+      bookingsContainer.innerHTML = '';
       
-      async function fetchBookings() {
-  try {
-    loadingMessage.style.display = 'block';
-    
-    // Check authentication status
-    const response = await fetch('/api/auth/status');
-    const authStatus = await response.json();
-    
-    if (!authStatus.loggedIn) {
-      throw new Error('User not authenticated');
-    }
-    
-    // Fetch bookings
-    const bookingsResponse = await fetch('/api/my-bookings');
-    
-    if (!bookingsResponse.ok) {
-      throw new Error('Failed to fetch bookings');
-    }
-    
-    const bookings = await bookingsResponse.json();
-    loadingMessage.style.display = 'none';
-    
-    if (bookings.length > 0) {
-      renderBookings(bookings);
-    } else {
-      bookingsContainer.innerHTML = `
-        <div class="no-bookings">
-          <h3>You don't have any bookings yet</h3>
-          <p>Start exploring destinations and book your next adventure!</p>
-          <a href="explore.html" class="explore-btn">Explore Destinations</a>
-        </div>
-      `;
-    }
-  } catch (error) {
-    console.error('Error fetching bookings:', error);
-    loadingMessage.style.display = 'none';
-    bookingsContainer.innerHTML = `
-      <div class="no-bookings">
-        <h3>Error Loading Bookings</h3>
-        <p>We encountered an issue fetching your bookings. Please try again later.</p>
-        <button class="btn btn-primary" onclick="fetchBookings()">Retry</button>
-      </div>
-    `;
-  }
-}
-      
-function renderBookings(bookings) {
-    bookingsContainer.innerHTML = '';
-    
-    bookings.forEach(booking => {
+      bookings.forEach(booking => {
+        // Format dates properly
+        const checkInDate = booking.checkIn ? new Date(booking.checkIn).toLocaleDateString() : 'Not specified';
+        const checkOutDate = booking.checkOut ? new Date(booking.checkOut).toLocaleDateString() : 'Not specified';
+        
         const card = document.createElement('div');
         card.className = `booking-card booking-${booking.status}`;
-        card.innerHTML = `
-            <img src="${booking.imageUrl || '/images/travel-bg.jpg'}" alt="${booking.destination}" class="booking-image" loading="lazy">
-            <div class="booking-info">
-                <h3>${booking.destination}</h3>
-                <div class="booking-status status-${booking.status}">${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}</div>
-                <div class="booking-details">
-                    <p><strong>Check-in:</strong> ${new Date(booking.checkIn).toLocaleDateString()}</p>
-                    <p><strong>Check-out:</strong> ${new Date(booking.checkOut).toLocaleDateString()}</p>
-                    <p><strong>Guests:</strong> ${booking.guests}</p>
-                    <p><strong>Total:</strong> $${parseFloat(booking.price).toFixed(2)}</p>
-                </div>
-                <div class="booking-actions">
-                    ${booking.status === 'confirmed' ? `<button class="btn btn-primary" onclick="viewBookingDetails('${booking._id}')">View Details</button>` : ''}
-                    ${booking.status === 'pending' ? `<button class="btn btn-secondary" onclick="modifyBooking('${booking._id}')">Modify</button>` : ''}
-                    ${booking.status !== 'cancelled' ? `<button class="btn btn-danger" onclick="cancelBooking('${booking._id}')">Cancel</button>` : ''}
-                </div>
-            </div>
-        `;
-        bookingsContainer.appendChild(card);
-    });
-}
-      function filterBookings(filter) {
-        const bookingCards = document.querySelectorAll('.booking-card');
         
-        bookingCards.forEach(card => {
-          if (filter === 'all' || card.classList.contains(`booking-${filter}`)) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      }
-    });
-    
-    // Functions to handle booking actions
-    function viewBookingDetails(bookingId) {
-      // Navigate to booking details page or show modal
-      window.location.href = `booking-details.html?id=${bookingId}`;
+        // Get image based on destination name
+        const imageUrl = booking.imageUrl || 
+                       destinationImages[booking.destination] || 
+                       defaultImage;
+        
+        card.innerHTML = `
+          <img src="${imageUrl}" alt="${booking.destination}" class="booking-image" loading="lazy">
+          <div class="booking-info">
+            <h3>${booking.destination}</h3>
+            <p class="booking-reference">Booking Ref: ${booking.bookingReference || booking._id}</p>
+            <div class="booking-status status-${booking.status}">${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}</div>
+            
+            <div class="booking-details">
+              <p><strong>Check-in:</strong> ${checkInDate}</p>
+              <p><strong>Check-out:</strong> ${checkOutDate}</p>
+              <p><strong>Travelers:</strong> ${booking.guests || booking.numTravelers}</p>
+              <p><strong>Accommodation:</strong> ${booking.accommodationType || 'Standard'}</p>
+              <p><strong>Total:</strong> $${parseFloat(booking.price || booking.pricing?.totalAmount || 0).toFixed(2)}</p>
+            </div>
+            
+            <div class="booking-actions">
+              <button class="btn btn-primary" onclick="viewBookingDetails('${booking._id}')">View Details</button>
+              ${booking.status !== 'cancelled' ? `<button class="btn btn-danger" onclick="cancelBooking('${booking._id}')">Cancel</button>` : ''}
+            </div>
+          </div>
+        `;
+        
+        bookingsContainer.appendChild(card);
+      });
     }
     
-    function modifyBooking(bookingId) {
-      // Navigate to booking modification page
-      window.location.href = `modify-booking.html?id=${bookingId}`;
+    function filterBookings(filter) {
+      const bookingCards = document.querySelectorAll('.booking-card');
+      
+      bookingCards.forEach(card => {
+        if (filter === 'all' || card.classList.contains(`booking-${filter}`)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     }
-    
-    function cancelBooking(bookingId) {
-      if (confirm('Are you sure you want to cancel this booking?')) {
-        // Call API to cancel booking
-        fetch(`/api/bookings/${bookingId}/cancel`, {
+  });
+  
+  // Functions to handle booking actions
+  async function viewBookingDetails(bookingId) {
+    // For now, just alert with the ID
+    alert(`View details for booking: ${bookingId}`);
+    // TODO: Navigate to booking details page when implemented
+    // window.location.href = `booking-details.html?id=${bookingId}`;
+  }
+  
+  async function cancelBooking(bookingId) {
+    if (confirm('Are you sure you want to cancel this booking?')) {
+      try {
+        const response = await fetch(`/api/bookings/${bookingId}/cancel`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Failed to cancel booking');
-          }
-          return response.json();
-        })
-        .then(data => {
-          alert('Booking cancelled successfully');
-          location.reload(); // Refresh to show updated status
-        })
-        .catch(error => {
-          console.error('Error cancelling booking:', error);
-          alert('Failed to cancel booking. Please try again later.');
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include'
         });
+        
+        if (!response.ok) {
+          throw new Error('Failed to cancel booking');
+        }
+        
+        const data = await response.json();
+        
+        // Update the booking in the UI without reloading
+        const bookingCard = document.querySelector(`.booking-card:has(button[onclick="cancelBooking('${bookingId}')"])`);
+        if (bookingCard) {
+          // Update card class for filtering
+          bookingCard.className = bookingCard.className.replace(/booking-(confirmed|pending)/, 'booking-cancelled');
+          
+          // Update status badge
+          const statusBadge = bookingCard.querySelector('.booking-status');
+          if (statusBadge) {
+            statusBadge.className = 'booking-status status-cancelled';
+            statusBadge.textContent = 'Cancelled';
+          }
+          
+          // Remove cancel button
+          const cancelButton = bookingCard.querySelector('.btn-danger');
+          if (cancelButton) {
+            cancelButton.remove();
+          }
+          
+          // Apply current filter to update visibility
+          const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+          if (activeFilter !== 'all' && activeFilter !== 'cancelled') {
+            bookingCard.style.display = 'none';
+          }
+        }
+        
+        alert('Booking cancelled successfully');
+      } catch (error) {
+        console.error('Error cancelling booking:', error);
+        alert('Failed to cancel booking. Please try again later.');
       }
     }
-  </script>
+  }
+  async function submitBooking(bookingData) {
+  try {
+    const response = await fetch('/api/bookings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include', // Important for session cookies
+      body: JSON.stringify(bookingData)
+    });
+    
+    const data = await response.json();
+    
+    if (response.status === 409) {
+      // Handle duplicate booking
+      const result = confirm(`${data.message}. Would you like to view your existing booking instead?`);
+      if (result) {
+        // Redirect to the existing booking details
+        window.location.href = `/booking-details.html?id=${data.existingBookingId}`;
+      }
+      return false; // Indicate booking was not created
+    }
+    else if (!response.ok) {
+      throw new Error(data.message || 'Error submitting booking');
+    }
+    
+    // Success - booking was created
+    alert('Booking confirmed successfully!');
+    window.location.href = '/payment-success?bookingId=' + data.bookingId;
+    return true;
+  } catch (error) {
+    console.error('Error submitting booking:', error);
+    alert(`Failed to submit booking: ${error.message}`);
+    return false;
+  }
+}
+
+// Example of using a booking reference generator to ensure uniqueness
+function generateBookingReference() {
+  // Create a unique booking reference using timestamp and random characters
+  const timestamp = new Date().getTime().toString(36);
+  const randomStr = Math.random().toString(36).substring(2, 8).toUpperCase();
+  return `TP-${timestamp}-${randomStr}`;
+}
+
+// Add this to prevent accidental duplicate form submissions
+function setupBookingForm() {
+  const bookingForm = document.getElementById('bookingForm');
+  if (bookingForm) {
+    let isSubmitting = false;
+    
+    bookingForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      if (isSubmitting) {
+        console.log('Form already being submitted, preventing duplicate');
+        return;
+      }
+      
+      isSubmitting = true;
+      
+      // Disable submit button
+      const submitButton = bookingForm.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Processing...';
+      }
+      
+      // Create booking data from form
+      const formData = new FormData(bookingForm);
+      const bookingData = {
+        bookingReference: generateBookingReference(),
+        // Add all your form fields here
+        destination: formData.get('destination'),
+        travelerName: formData.get('travelerName'),
+        departureDate: formData.get('departureDate'),
+        returnDate: formData.get('returnDate'),
+        numTravelers: parseInt(formData.get('numTravelers')),
+        // ... other fields
+      };
+      
+      try {
+        const success = await submitBooking(bookingData);
+        
+        if (!success) {
+          // Re-enable form if booking wasn't successful
+          isSubmitting = false;
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Confirm Booking';
+          }
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        isSubmitting = false;
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Confirm Booking';
+        }
+      }
+    });
+  }
+}
+
+// Call this when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  setupBookingForm();
+});
+</script>
 </body>
 </html>
