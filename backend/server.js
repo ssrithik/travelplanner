@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: true, // or specify your frontend origin
+  origin: true, 
   credentials: true
 }));
 app.use('/images', express.static(path.join(__dirname, '../frontend/images')));
@@ -338,7 +338,10 @@ app.post('/api/bookings/:id/cancel', async (req, res) => {
     res.status(500).json({ message: 'Error cancelling booking', error });
   }
 });
-
+app.get('/login', (req, res) => {
+  const redirect = req.query.redirect;
+  res.sendFile(path.join(__dirname, '../frontend/login.html'));
+});
 
 app.get('/destinations', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/explore.html'));
