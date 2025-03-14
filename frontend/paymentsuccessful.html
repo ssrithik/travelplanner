@@ -495,7 +495,12 @@
     </div>
 
     <script>
-        
+        console.log('Environment:', window.location.hostname);
+console.log('Storage data:', {
+  bookingDetails: localStorage.getItem('bookingDetails'),
+  selectedFlight: localStorage.getItem('selectedFlight'),
+  paymentMethod: localStorage.getItem('paymentMethod')
+});
         function createConfetti() {
             const colors = ['#ff7f50', '#22c55e', '#4f46e5', '#f59e0b', '#ec4899'];
             for (let i = 0; i < 100; i++) {
@@ -626,14 +631,14 @@ async function checkLoginStatus() {
     console.log('Login status response:', response);
     if (!response.ok) {
       console.error('Login status check failed:', response.status, response.statusText);
-      return true;
+      return false;
     }
     const data = await response.json();
     console.log('Login status data:', data);
     return data.loggedIn;
   } catch (error) {
     console.error('Error checking login status:', error);
-    return true;
+    return false;
   }
 }
 

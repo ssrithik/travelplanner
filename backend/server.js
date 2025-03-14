@@ -10,8 +10,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: true, 
-  credentials: true
+  origin: process.env.NODE_ENV === 'production' 
+    ? process.env.ALLOWED_ORIGIN || 'https://travelplanner-1.onrender.com' 
+    : 'http://localhost:3000',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use('/images', express.static(path.join(__dirname, '../frontend/images')));
 app.use(bodyParser.json());
@@ -22,11 +26,13 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 24 * 60 * 60 * 1000
+    // Only use secure cookies if running on HTTPS
+    secure: process.env.SECURE_COOKIES === 'true',
+    maxAge: 24 * 60 * 60 * 1000,
+    // Add this to ensure cookies work across subdomains if needed
+    domain: process.env.COOKIE_DOMAIN || undefined
   }
 }));
-
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 mongoose.connect(process.env.MONGODB_URI, {})
